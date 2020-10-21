@@ -1,6 +1,7 @@
 <template>
   <h2>TeamsList.vue</h2>
   <button @click="goToUsers">Go to Users</button>
+  <router-view></router-view>
   <TeamsItem v-for="team in teams" :key="team.id" :id="team.id" :name="team.name" :member-count="team.members.length" />
 </template>
 
