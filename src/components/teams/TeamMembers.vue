@@ -10,6 +10,7 @@ import UserItem from '../users/UserItem.vue'
 
 export default {
   inject: [ 'users', 'teams' ],
+  props: [ 'teamId' ],
   components: {
     UserItem
   },
@@ -20,8 +21,7 @@ export default {
     }
   },
   methods: {
-    loadTeamMembers({ params }) {
-      const teamId = params.teamId;
+    loadTeamMembers(teamId) {
       const selectedTeam = this.teams.find(team => team.id === teamId);
       const members = selectedTeam.members;
       const selectedMembers = []
@@ -34,12 +34,12 @@ export default {
     }
   },
   created() {
-    this.loadTeamMembers(this.$route)
+    this.loadTeamMembers(this.teamId)
   },
   watch: {
-    $route(newRoute) { // we have to manually "reload" data whenever params change, allowing us to successfully navigate when, e.g., a user wants to see another team members page from the one they're on right now (look at template)
+    teamId(newId) { // we have to manually "reload" data whenever params change, allowing us to successfully navigate when, e.g., a user wants to see another team members page from the one they're on right now (look at template)
     // without this, the `<router-link></router-link>` will still update the param but the component itself will not be re-rendered since it's already rendered (caching done behind the scenes to maintain efficiency)
-      this.loadTeamMembers(newRoute)
+    this.loadTeamMembers(newId)
     }
   }
 }
