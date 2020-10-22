@@ -7,13 +7,11 @@
 export default {
   methods: {
     goToTeams() {
-      this.$router.push('/teams')
+      this.$router.push("/teams");
       // ^ "programmatic navigation"
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -8,13 +8,15 @@
 
 <script>
 export default {
-  props: ['id', 'name', 'memberCount'],
+  props: ["id", "name", "memberCount"],
   computed: {
-    teamMembersLink() { return `/teams/${this.id}` }
-  }
-}
+    teamMembersLink() {
+      // return `/teams/${this.id}`;
+      return { name: 'team-members', params: { teamId: this.id } } // example of using "named" routes, preferred pattern over using paths
+      // ^ can also be used with programmatic navigation, e.g., this.$router.push({ ... })
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

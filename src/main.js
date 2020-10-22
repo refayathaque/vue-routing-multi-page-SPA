@@ -12,9 +12,22 @@ const router = createRouter({
   routes: [
     { path: "/", redirect: "/teams" },
     {
+      name: "teams",
       path: "/teams",
       component: TeamsList,
-      children: [{ path: ":teamId", component: TeamMembers, props: true }],
+      children: [
+        // {
+        //   path: "default",
+        //   component: NotFound,
+        // },
+        // ^ if you want to have a "default" nested child component being rendered first
+        {
+          name: "team-members",
+          path: ":teamId",
+          component: TeamMembers,
+          props: true,
+        },
+      ],
       // children routes will required `<router-view></router-view` in the component's template
     },
     { path: "/users", component: UsersList },
