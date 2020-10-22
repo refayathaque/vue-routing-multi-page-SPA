@@ -1,16 +1,14 @@
 <template>
   <div>
     <h2>TheNavigation.vue</h2>
-    <p><router-link to='/teams'>Teams</router-link></p>
-    <p><router-link to='/users'>Users</router-link></p>
+    <p><router-link to="/teams">Teams</router-link></p>
+    <p><router-link to="/users">Users</router-link></p>
     <!-- ^ for css styling target `a` (anchor) tags, because `router-link` under the hood renders an anchor tag-->
   </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {};
 </script>
 
 <style scoped>

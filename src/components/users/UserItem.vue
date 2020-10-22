@@ -6,19 +6,19 @@
 
 <script>
 export default {
-  props: ['name', 'role'],
+  props: ["name", "role"],
   computed: {
     roleClass() {
-      if (this.role === 'Engineer') {
-        return 'role-engineer';
+      if (this.role === "Engineer") {
+        return "role-engineer";
       }
-      if (this.role === 'Consultant') {
-        return 'role-consultant';
+      if (this.role === "Consultant") {
+        return "role-consultant";
       }
       return null;
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -29,7 +29,8 @@ export default {
   padding: 0.25rem 1rem;
   display: inline-block;
 }
-.role-consultant, .role-engineer {
+.role-consultant,
+.role-engineer {
   color: white;
 }
 .role-engineer {
