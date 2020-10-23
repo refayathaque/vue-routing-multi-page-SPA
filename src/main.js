@@ -6,6 +6,8 @@ import TeamsList from "./components/teams/TeamsList.vue";
 import TeamMembers from "./components/teams/TeamMembers.vue";
 import UsersList from "./components/users/UsersList.vue";
 import NotFound from "./components/nav/NotFound.vue";
+import TeamsFooter from "./components/teams/TeamsFooter.vue";
+import UsersFooter from "./components/users/UsersFooter.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,7 +16,8 @@ const router = createRouter({
     {
       name: "teams",
       path: "/teams",
-      component: TeamsList,
+      components: { default: TeamsList, footer: TeamsFooter },
+      // ^ keys here correspond to the named router views in `main.js`
       children: [
         // {
         //   path: "default",
@@ -26,11 +29,12 @@ const router = createRouter({
           path: ":teamId",
           component: TeamMembers,
           props: true,
+          // query parameters are optional by nature so you don't have to have them here, just include in <router-link></router-link> object
         },
       ],
-      // children routes will required `<router-view></router-view` in the component's template
+      // children routes will require `<router-view></router-view` in the parent component's (TeamsList.vue in this case) template
     },
-    { path: "/users", component: UsersList },
+    { path: "/users", components: { default: UsersList, footer: UsersFooter } },
 
     // { path: "/teams/:teamId", component: TeamMembers, props: true },
     // ^ example of a "dynamic" route, `props: true` makes the dynamic params accessible in the component as props, instead of just being accessible through `this.$route.params/$route.params`

@@ -12,7 +12,12 @@ export default {
   computed: {
     teamMembersLink() {
       // return `/teams/${this.id}`;
-      return { name: 'team-members', params: { teamId: this.id } } // example of using "named" routes, preferred pattern over using paths
+      return {
+        name: "team-members",
+        params: { teamId: this.id },
+        query: { sort: "asc" },
+      };
+      // ^ example of using "named" routes, preferred pattern over using paths
       // ^ can also be used with programmatic navigation, e.g., this.$router.push({ ... })
     },
   },

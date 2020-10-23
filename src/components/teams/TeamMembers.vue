@@ -40,6 +40,7 @@ export default {
   },
   created() {
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query) // to get query parameters, you can't get via props
   },
   watch: {
     teamId(newId) {

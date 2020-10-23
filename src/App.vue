@@ -3,8 +3,12 @@
   <TheNavigation />
   <main>
     <!-- components that are part of the router need not be globally/locally registered -->
-    <router-view> </router-view>
+    <router-view></router-view>
   </main>
+  <footer>
+    <router-view name="footer"></router-view>
+    <!-- ^ example of "named" router views -->
+  </footer>
 </template>
 
 <script>
