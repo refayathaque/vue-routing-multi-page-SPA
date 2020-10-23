@@ -34,7 +34,15 @@ const router = createRouter({
       ],
       // children routes will require `<router-view></router-view` in the parent component's (TeamsList.vue in this case) template
     },
-    { path: "/users", components: { default: UsersList, footer: UsersFooter } },
+    {
+      path: "/users",
+      components: { default: UsersList, footer: UsersFooter },
+      beforeEnter(to, from, next) {
+        console.log("Local users.vue beforeEnter navigation guard");
+        console.log(to, from);
+        next();
+      },
+    },
 
     // { path: "/teams/:teamId", component: TeamMembers, props: true },
     // ^ example of a "dynamic" route, `props: true` makes the dynamic params accessible in the component as props, instead of just being accessible through `this.$route.params/$route.params`
@@ -44,6 +52,29 @@ const router = createRouter({
     { path: "/:catchAll(.*)", component: NotFound },
     // order matters! e.g., '/teams/new' should go above '/teams/:teamId', if '/teams/new' is below '/teams/:teamId' it will get interpreted as '/teams/:teamId' and there will be a match when we don't want that
   ],
+  scrollBehavior(_, _2, savedPosition) {
+    // console.log(to, from, savedPosition)
+    // pages going 'to', pages coming 'from'
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
+    // takes the user back to the part of the page they were at when hitting the back button
+  },
+});
+
+router.beforeEach(function(to, from, next) {
+  // runs "before each" route change
+  console.log("Global beforeEach navigation guard");
+  console.log(to, from);
+  // next(false); // if you want to block navigation to the next route
+  // if (to.name === 'team-members') {
+  //   next();
+  // } else {
+  //   next({ name: 'team-members', params: { teamId: 't2' } });
+  // }
+  // example (a bad one) of a navigation guard, but a good use case is using to control navigation based on user authentication status
+  next();
 });
 
 const app = createApp(App);

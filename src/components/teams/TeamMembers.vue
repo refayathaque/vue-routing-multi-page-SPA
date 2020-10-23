@@ -40,7 +40,14 @@ export default {
   },
   created() {
     this.loadTeamMembers(this.teamId);
-    console.log(this.$route.query) // to get query parameters, you can't get via props
+    // console.log(this.$route.query) 
+    // to get query parameters, you can't get via props
+  },
+  beforeRouteUpdate(to, from, next) {
+    // will be invoked whenever this component is reused with new data (coming in as props (from params) due to a route change)
+    // this.loadTeamMembers(to.params.teamId)
+    // ^ pattern is an alternative to watching the teamId for changes (right below), but is considered less flexible than what we have below
+    next();
   },
   watch: {
     teamId(newId) {
