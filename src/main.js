@@ -77,6 +77,11 @@ router.beforeEach(function(to, from, next) {
   next();
 });
 
+router.afterEach(function (to, from) {
+  // unlike `beforeEach`, does not have the `next` argument because it runs after a navigation route
+  // useful for sending analytics data to back-end, e.g., logging steps in users' journey through app 
+})
+
 const app = createApp(App);
 
 app.use(router);
