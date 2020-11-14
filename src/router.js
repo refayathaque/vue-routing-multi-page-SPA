@@ -20,10 +20,10 @@ const router = createRouter({
       // ^ keys here correspond to the named router views in `main.js`
       children: [
         // {
-        //   path: "default",
+        //   path: "",
         //   component: NotFound,
         // },
-        // ^ if you want to have a "default" nested child component being rendered first
+        // ^ if you want to have a "default" nested child component being rendered first, "Maybe you do want to render something there. In such case you can provide an empty nested path:" - https://next.router.vuejs.org/guide/essentials/nested-routes.html
         {
           name: "team-members",
           path: ":teamId",
